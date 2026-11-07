@@ -12,7 +12,7 @@ import { pipeline, RawImage } from '@xenova/transformers';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const ESP_KEY = process.env.ESP_KEY || '';
+const ESP_KEY = process.env.ESP_KEY || "esp1234"; 
 const VIEW_PASS = process.env.VIEW_PASS || '';
 const NTFY_TOPIC = process.env.NTFY_TOPIC || '';
 const ALERT_COOLDOWN_MS = 30000;   // 1 notification max toutes les 30 s
