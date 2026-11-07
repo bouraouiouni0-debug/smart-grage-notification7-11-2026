@@ -1,0 +1,19 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Détection</title>
+<h2>ESP32-CAM : détection de personne</h2>
+<button id="b">Activer les notifications</button>
+<p id="s">En attente…</p>
+<img id="i" width="480">
+<script>
+b.onclick = () => Notification.requestPermission();
+const es = new EventSource('/events');
+es.addEventListener('status', e => {
+  const d = JSON.parse(e.data);
+  s.textContent = d.person ? '👤 Personne détectée (' + d.count + ')' : 'Rien à signaler';
+  i.src = '/last.jpg?' + Date.now();
+});
+es.addEventListener('alert', () => {
+  new Notification('🚨 Personne détectée !', { body: new Date().toLocaleTimeString() });
+});
+</script>
